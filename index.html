@@ -19,6 +19,8 @@
                 <option value="Soybeans">Soybeans</option>
                 <option value="Common Beans">Common Beans</option>
                 <option value="Peanuts">Peanuts</option>
+                <option value="Lucerne (Alfalfa)">Lucerne (Alfalfa)</option>
+                <option value="Clover">Clover</option>
             </optgroup>
             <!-- Cereals (Non-Nitrogen-Fixing Crops) -->
             <optgroup label="Cereals">
@@ -28,6 +30,13 @@
                 <option value="Rice">Rice</option>
                 <option value="Oats">Oats</option>
                 <option value="Sorghum">Sorghum</option>
+                <option value="Barley (Forage)">Barley (Forage)</option>
+                <option value="Oat Hay">Oat Hay</option>
+            </optgroup>
+            <!-- Forage Crops (Non-Legumes) -->
+            <optgroup label="Forage Crops (Non-Legumes)">
+                <option value="Ryegrass">Ryegrass</option>
+                <option value="Sorghum (Forage)">Sorghum (Forage)</option>
             </optgroup>
             <!-- Oilseeds -->
             <optgroup label="Oilseeds">
@@ -50,7 +59,6 @@
             <!-- Others -->
             <optgroup label="Others">
                 <option value="Sugarcane">Sugarcane</option>
-                <option value="Forage Sorghum">Forage Sorghum</option>
             </optgroup>
         </select>
 
@@ -162,12 +170,16 @@
             </li>
             <li>
                 <strong>Calculate Nitrogen Fixed</strong>
-                <p>Since Wheat is a non-nitrogen-fixing crop, nitrogen fixation is zero:<br>
-                Nitrogen Fixed = 0 kg N/ha</p>
+                <p>
+                    Since Wheat is a non-nitrogen-fixing crop, nitrogen fixation is zero:<br>
+                    Nitrogen Fixed = 0 kg N/ha
+                </p>
             </li>
             <li>
                 <strong>Calculate Total Nitrogen Contribution</strong>
-                <p>Total Nitrogen Contribution = Nitrogen Fixed + Nitrogen from Residues = 0 + 240 = 240 kg N/ha</p>
+                <p>
+                    Total Nitrogen Contribution = Nitrogen Fixed + Nitrogen from Residues = 0 + 240 = 240 kg N/ha
+                </p>
             </li>
         </ol>
 
