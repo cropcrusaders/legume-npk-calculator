@@ -1,7 +1,5 @@
 // calculator.js
 
-// Ensure that data.js is loaded before this script
-
 function updateYieldLabel() {
     const cropType = document.getElementById('cropType').value;
     const crop = cropData[cropType];
@@ -44,6 +42,7 @@ function calculateNPK(event) {
     switch (crop.yieldUnit) {
         case "t/ha":
         case "t/ha fresh weight":
+        case "t/ha dry matter":
             economicYieldInKgPerHa = yieldValue * 1000; // Convert tonnes to kg
             break;
         case "lint bales/ha":
@@ -53,9 +52,8 @@ function calculateNPK(event) {
             }
             economicYieldInKgPerHa = yieldValue * crop.conversionFactor; // Convert bales to kg
             break;
-        // Add cases for other units if needed
         default:
-            alert("Unknown yield unit.");
+            alert(`Unknown yield unit: ${crop.yieldUnit}`);
             return;
     }
 
@@ -92,7 +90,9 @@ function calculateNPK(event) {
 
     let residueBiomass = 0;
     if (residueManagement === 'Residues Removed') {
-        residueBiomass = RB;
+        // For forage/hay crops where most of AGB is removed
+        const unharvestedAGB = AGB * (1 - crop.harvestIndex);
+        residueBiomass = unharvestedAGB + RB;
     } else {
         residueBiomass = AGB + RB;
     }
