@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legume NPK Contribution Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>Legume NPK Contribution Calculator</h1>
+    <form id="npkForm">
+        <label for="cropType">Crop Type:</label>
+        <select id="cropType" required>
+            <option value="Mung Beans">Mung Beans</option>
+            <option value="Chickpeas">Chickpeas</option>
+            <option value="Lentils">Lentils</option>
+            <option value="Peas">Peas</option>
+            <option value="Soybeans">Soybeans</option>
+            <!-- Add other crops as needed -->
+        </select>
+
+        <label for="grainYield">Grain Yield (t/ha):</label>
+        <input type="number" id="grainYield" step="0.01" required>
+
+        <label for="residueManagement">Residue Management:</label>
+        <select id="residueManagement" required>
+            <option value="Residues Removed">Residues Removed</option>
+            <option value="Residues Retained">Residues Retained</option>
+            <option value="Residues Incorporated">Residues Incorporated</option>
+        </select>
+
+        <label for="nodulationEfficiency">Nodulation Efficiency:</label>
+        <select id="nodulationEfficiency" required>
+            <option value="Poor">Poor</option>
+            <option value="Average">Average</option>
+            <option value="Good">Good</option>
+        </select>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <div id="results">
+        <h2>Results</h2>
+        <p>Nitrogen Contribution: <span id="nContribution">0 kg N/ha</span></p>
+        <p>Phosphorus Contribution: <span id="pContribution">0 kg P₂O₅/ha</span></p>
+        <p>Potassium Contribution: <span id="kContribution">0 kg K₂O/ha</span></p>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/calculator.js"></script>
+</body>
+</html>
