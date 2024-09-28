@@ -2,21 +2,27 @@
 
 // Ensure that data.js is loaded before this script
 
+function updateYieldLabel() {
+    const cropType = document.getElementById('cropType').value;
+    const crop = cropData[cropType];
+
+    if (crop) {
+        const yieldLabel = document.getElementById('yieldLabel');
+        const yieldInput = document.getElementById('yieldInput');
+
+        yieldLabel.innerText = `Yield (${crop.yieldUnit}):`;
+        yieldInput.placeholder = `Enter yield in ${crop.yieldUnit}`;
+    }
+}
+
 function calculateNPK(event) {
     event.preventDefault(); // Prevent form submission
 
     // Get user inputs
     const cropType = document.getElementById('cropType').value;
-    const grainYieldInput = document.getElementById('grainYield').value;
-    const grainYield = parseFloat(grainYieldInput) * 1000; // Convert t/ha to kg/ha
+    const yieldInputValue = document.getElementById('yieldInput').value;
     const residueManagement = document.getElementById('residueManagement').value;
     const nodulation = document.getElementById('nodulationEfficiency').value;
-
-    // Input validation
-    if (isNaN(grainYield) || grainYield <= 0) {
-        alert("Please enter a valid Grain Yield.");
-        return;
-    }
 
     // Get default values for the selected crop
     const crop = cropData[cropType];
@@ -25,16 +31,44 @@ function calculateNPK(event) {
         return;
     }
 
+    // Input validation
+    const yieldValue = parseFloat(yieldInputValue);
+    if (isNaN(yieldValue) || yieldValue <= 0) {
+        alert("Please enter a valid Yield.");
+        return;
+    }
+
+    let economicYieldInKgPerHa;
+
+    // Handle different yield units
+    switch (crop.yieldUnit) {
+        case "t/ha":
+        case "t/ha fresh weight":
+            economicYieldInKgPerHa = yieldValue * 1000; // Convert tonnes to kg
+            break;
+        case "lint bales/ha":
+            if (!crop.conversionFactor) {
+                alert("Conversion factor for lint bales is missing.");
+                return;
+            }
+            economicYieldInKgPerHa = yieldValue * crop.conversionFactor; // Convert bales to kg
+            break;
+        // Add cases for other units if needed
+        default:
+            alert("Unknown yield unit.");
+            return;
+    }
+
     console.log("Selected Crop:", cropType);
-    console.log("Grain Yield (kg/ha):", grainYield);
+    console.log("Economic Yield (kg/ha):", economicYieldInKgPerHa);
     console.log("Residue Management:", residueManagement);
     console.log("Nodulation Efficiency:", nodulation);
 
     // Calculations
-    const AGB = grainYield * (1 / crop.harvestIndex); // Above-Ground Biomass
-    const RB = AGB * crop.rootShootRatio;             // Root Biomass
-    const totalBiomass = AGB + RB;                    // Total Biomass
-    const nUptake = totalBiomass * crop.nContent;     // Total Nitrogen Uptake
+    const AGB = economicYieldInKgPerHa * (1 / crop.harvestIndex); // Above-Ground Biomass
+    const RB = AGB * crop.rootShootRatio;                         // Root Biomass
+    const totalBiomass = AGB + RB;                                // Total Biomass
+    const nUptake = totalBiomass * crop.nContent;                 // Total Nitrogen Uptake
 
     let nFixed = 0; // Initialize Nitrogen Fixed
 
@@ -92,15 +126,22 @@ function calculateNPK(event) {
 function toggleNodulationInput(isEnabled) {
     const nodulationInput = document.getElementById('nodulationEfficiency');
     nodulationInput.disabled = !isEnabled;
+    if (!isEnabled) {
+        nodulationInput.value = ""; // Reset the value if disabled
+    }
 }
 
- // Attach event listener to the form
+// Attach event listener to the form
 document.getElementById('npkForm').addEventListener('submit', calculateNPK);
 
-// Attach event listener to the crop type dropdown to update nodulation input
+// Attach event listener to the crop type dropdown to update nodulation input and yield label
 document.getElementById('cropType').addEventListener('change', function() {
     const selectedCrop = cropData[this.value];
     if (selectedCrop) {
         toggleNodulationInput(selectedCrop.isNitrogenFixing);
+        updateYieldLabel();
     }
 });
+
+// Initialize yield label on page load
+updateYieldLabel();
