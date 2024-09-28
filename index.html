@@ -3,20 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legume NPK Contribution Calculator</title>
+    <title>NPK Contribution Calculator</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>Legume NPK Contribution Calculator</h1>
+    <h1>NPK Contribution Calculator</h1>
     <form id="npkForm">
         <label for="cropType">Crop Type:</label>
         <select id="cropType" required>
-            <option value="Mung Beans">Mung Beans</option>
-            <option value="Chickpeas">Chickpeas</option>
-            <option value="Lentils">Lentils</option>
-            <option value="Peas">Peas</option>
-            <option value="Soybeans">Soybeans</option>
-            <!-- Add other crops as needed -->
+            <!-- Legumes (Nitrogen-Fixing Crops) -->
+            <optgroup label="Legumes">
+                <option value="Mung Beans">Mung Beans</option>
+                <option value="Chickpeas">Chickpeas</option>
+                <option value="Lentils">Lentils</option>
+                <option value="Peas">Peas</option>
+                <option value="Soybeans">Soybeans</option>
+                <option value="Common Beans">Common Beans</option>
+                <option value="Peanuts">Peanuts</option>
+            </optgroup>
+            <!-- Cereals (Non-Nitrogen-Fixing Crops) -->
+            <optgroup label="Cereals">
+                <option value="Wheat">Wheat</option>
+                <option value="Barley">Barley</option>
+                <option value="Corn">Corn</option>
+                <option value="Rice">Rice</option>
+                <option value="Oats">Oats</option>
+                <option value="Sorghum">Sorghum</option>
+            </optgroup>
+            <!-- Oilseeds -->
+            <optgroup label="Oilseeds">
+                <option value="Canola">Canola</option>
+                <option value="Sunflower">Sunflower</option>
+                <option value="Sesame">Sesame</option>
+                <option value="Safflower">Safflower</option>
+            </optgroup>
+            <!-- Fiber Crops -->
+            <optgroup label="Fiber Crops">
+                <option value="Cotton">Cotton</option>
+                <option value="Flax">Flax</option>
+            </optgroup>
+            <!-- Root and Tuber Crops -->
+            <optgroup label="Root and Tuber Crops">
+                <option value="Potatoes">Potatoes</option>
+                <option value="Cassava">Cassava</option>
+                <option value="Sugar Beet">Sugar Beet</option>
+            </optgroup>
+            <!-- Others -->
+            <optgroup label="Others">
+                <option value="Sugarcane">Sugarcane</option>
+            </optgroup>
         </select>
 
         <label for="grainYield">Grain Yield (t/ha):</label>
@@ -31,6 +66,7 @@
 
         <label for="nodulationEfficiency">Nodulation Efficiency:</label>
         <select id="nodulationEfficiency" required>
+            <option value="">Select Nodulation Efficiency</option>
             <option value="Poor">Poor (Few, pale nodules; stunted growth)</option>
             <option value="Average">Average (Moderate nodules; standard growth)</option>
             <option value="Good">Good (Abundant, healthy nodules; vigorous growth)</option>
@@ -41,11 +77,11 @@
 
     <div id="results">
         <h2>Results</h2>
-        <p>Nitrogen Fixed: <span id="nFixed">0 kg N/ha</span></p>
-        <p>Nitrogen from Residues: <span id="nFromResidues">0 kg N/ha</span></p>
-        <p>Total Nitrogen Contribution: <span id="nContribution">0 kg N/ha</span></p>
-        <p>Phosphorus Contribution: <span id="pContribution">0 kg P₂O₅/ha</span></p>
-        <p>Potassium Contribution: <span id="kContribution">0 kg K₂O/ha</span></p>
+        <p>Nitrogen Fixed: <span id="nFixed">N/A</span></p>
+        <p>Nitrogen from Residues: <span id="nFromResidues">N/A</span></p>
+        <p>Total Nitrogen Contribution: <span id="nContribution">N/A</span></p>
+        <p>Phosphorus Contribution: <span id="pContribution">N/A</span></p>
+        <p>Potassium Contribution: <span id="kContribution">N/A</span></p>
     </div>
 
     <script src="js/data.js"></script>
