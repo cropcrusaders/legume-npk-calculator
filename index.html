@@ -84,6 +84,131 @@
         <p>Potassium Contribution: <span id="kContribution">N/A</span></p>
     </div>
 
+    <!-- Information Section -->
+    <div id="information">
+        <h2>Understanding Nitrogen Residues</h2>
+        <p>
+            When a crop is harvested, not all of its biomass is removed from the field. The non-harvested parts, known as <strong>crop residues</strong>, include:
+        </p>
+        <ul>
+            <li><strong>Above-Ground Residues:</strong> Stems, leaves, and other plant parts left after harvesting the economic yield (e.g., grains, seeds).</li>
+            <li><strong>Below-Ground Residues:</strong> Roots remaining in the soil.</li>
+        </ul>
+        <p>
+            These residues contain nutrients that can be recycled into the soil as they decompose. The nitrogen content in these residues is what's referred to as "<strong>nitrogen from residues</strong>" or "<strong>residual nitrogen</strong>."
+        </p>
+
+        <h3>Importance of Nitrogen Residues</h3>
+        <ul>
+            <li><strong>Soil Fertility:</strong> Residual nitrogen contributes to soil fertility by adding organic matter and nutrients.</li>
+            <li><strong>Nutrient Cycling:</strong> Enhances nutrient cycling and reduces the need for synthetic nitrogen fertilizers.</li>
+            <li><strong>Sustainability:</strong> Promotes sustainable agriculture by improving soil health over time.</li>
+        </ul>
+
+        <h3>Example Calculation</h3>
+        <p>Let's walk through an example to illustrate how "nitrogen from residues" is calculated in the context of your NPK Contribution Calculator.</p>
+
+        <h4>Scenario</h4>
+        <ul>
+            <li><strong>Crop:</strong> Wheat (a non-nitrogen-fixing crop)</li>
+            <li><strong>Grain Yield:</strong> 5 t/ha (tonnes per hectare)</li>
+            <li><strong>Residue Management:</strong> Residues Retained</li>
+        </ul>
+
+        <h4>Step-by-Step Calculation</h4>
+        <ol>
+            <li>
+                <strong>Convert Grain Yield to kg/ha</strong>
+                <p>Grain Yield = 5 t/ha × 1000 = 5000 kg/ha</p>
+            </li>
+            <li>
+                <strong>Calculate Above-Ground Biomass (AGB)</strong>
+                <p>
+                    Harvest Index (HI) for Wheat: 0.45<br>
+                    AGB = Grain Yield / Harvest Index = 5000 kg/ha / 0.45 ≈ 11,111 kg/ha
+                </p>
+            </li>
+            <li>
+                <strong>Calculate Root Biomass (RB)</strong>
+                <p>
+                    Root-Shoot Ratio (RSR) for Wheat: 0.20<br>
+                    RB = AGB × Root-Shoot Ratio = 11,111 kg/ha × 0.20 = 2,222 kg/ha
+                </p>
+            </li>
+            <li>
+                <strong>Calculate Total Biomass</strong>
+                <p>Total Biomass = AGB + RB = 11,111 kg/ha + 2,222 kg/ha = 13,333 kg/ha</p>
+            </li>
+            <li>
+                <strong>Calculate Nitrogen Uptake</strong>
+                <p>
+                    Nitrogen Content (nContent) for Wheat: 0.018 (or 1.8%)<br>
+                    Nitrogen Uptake = Total Biomass × nContent = 13,333 kg/ha × 0.018 = 240 kg N/ha
+                </p>
+            </li>
+            <li>
+                <strong>Calculate Residue Biomass</strong>
+                <p>
+                    Since residues are retained, residue biomass includes both AGB and RB:<br>
+                    Residue Biomass = AGB + RB = 13,333 kg/ha
+                </p>
+            </li>
+            <li>
+                <strong>Calculate Nitrogen from Residues</strong>
+                <p>
+                    Nitrogen from Residues = Residue Biomass × nContent = 13,333 kg/ha × 0.018 = 240 kg N/ha<br>
+                    <em>Note:</em> This represents the total nitrogen present in the residues that can potentially be returned to the soil.
+                </p>
+            </li>
+            <li>
+                <strong>Calculate Nitrogen Fixed</strong>
+                <p>Since Wheat is a non-nitrogen-fixing crop, nitrogen fixation is zero:<br>
+                Nitrogen Fixed = 0 kg N/ha</p>
+            </li>
+            <li>
+                <strong>Calculate Total Nitrogen Contribution</strong>
+                <p>Total Nitrogen Contribution = Nitrogen Fixed + Nitrogen from Residues = 0 + 240 = 240 kg N/ha</p>
+            </li>
+        </ol>
+
+        <h4>Interpretation</h4>
+        <ul>
+            <li><strong>Nitrogen from Residues (240 kg N/ha):</strong> This is the amount of nitrogen contained in the crop residues that will be returned to the soil upon decomposition.</li>
+            <li><strong>Availability to Next Crop:</strong> Not all this nitrogen becomes immediately available. Decomposition rates and soil conditions affect how quickly nitrogen is released.</li>
+            <li><strong>Importance for Soil Health:</strong> Returning residues to the soil enhances organic matter and nutrient content, improving soil structure and fertility.</li>
+        </ul>
+
+        <h3>Key Points</h3>
+        <ul>
+            <li><strong>Non-Nitrogen-Fixing Crops:</strong> For crops like wheat, the primary nitrogen contribution comes from the residues left in the field.</li>
+            <li><strong>Nitrogen-Fixing Crops:</strong> For legumes (e.g., soybeans, peas), nitrogen contribution includes both fixed atmospheric nitrogen and nitrogen from residues.</li>
+            <li><strong>Residue Management Practices:</strong>
+                <ul>
+                    <li><strong>Residues Removed:</strong> If residues are removed (e.g., for fodder), the nitrogen contained in them is not returned to the soil.</li>
+                    <li><strong>Residues Retained or Incorporated:</strong> Keeping residues in the field allows for nutrient recycling.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>Factors Affecting Nitrogen Availability from Residues</h3>
+        <ul>
+            <li><strong>Residue Quality:</strong> High-quality residues with lower carbon-to-nitrogen (C:N) ratios decompose faster, releasing nitrogen more quickly.</li>
+            <li><strong>Soil Conditions:</strong> Temperature, moisture, and microbial activity influence decomposition rates.</li>
+            <li><strong>Management Practices:</strong> Tillage and residue incorporation methods can affect how quickly residues break down.</li>
+        </ul>
+
+        <h3>Application in the Calculator</h3>
+        <p>In your NPK Contribution Calculator, the "Nitrogen from Residues" value helps users understand:</p>
+        <ul>
+            <li><strong>Nutrient Recycling Potential:</strong> How much nitrogen can be returned to the soil from the previous crop.</li>
+            <li><strong>Fertilizer Planning:</strong> Adjusting fertilizer applications based on the expected nitrogen contribution from residues.</li>
+            <li><strong>Sustainability Goals:</strong> Promoting practices that enhance soil health and reduce reliance on synthetic fertilizers.</li>
+        </ul>
+
+        <h3>Conclusion</h3>
+        <p>"Nitrogen from residues" represents the potential nitrogen contribution to the soil from the decomposition of crop residues. It's a crucial component of sustainable nutrient management, helping to maintain soil fertility and support healthy crop production.</p>
+    </div>
+
     <script src="js/data.js"></script>
     <script src="js/calculator.js"></script>
 </body>
