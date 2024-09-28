@@ -31,11 +31,24 @@ function calculateNPK(event) {
     console.log("Nodulation Efficiency:", nodulation);
 
     // Calculations
-    const AGB = grainYield * (1 / crop.harvestIndex);
-    const RB = AGB * crop.rootShootRatio;
-    const totalBiomass = AGB + RB;
-    const nUptake = totalBiomass * crop.nContent;
-    const nFixed = nUptake * nFixationEfficiency[nodulation];
+    const AGB = grainYield * (1 / crop.harvestIndex); // Above-Ground Biomass
+    const RB = AGB * crop.rootShootRatio;             // Root Biomass
+    const totalBiomass = AGB + RB;                    // Total Biomass
+    const nUptake = totalBiomass * crop.nContent;     // Total Nitrogen Uptake
+
+    let nFixed = 0; // Initialize Nitrogen Fixed
+
+    // Check if the crop is nitrogen-fixing
+    if (crop.isNitrogenFixing) {
+        // Ensure that nodulation efficiency is provided
+        if (!nFixationEfficiency[nodulation]) {
+            alert("Please select a valid Nodulation Efficiency.");
+            return;
+        }
+        nFixed = nUptake * nFixationEfficiency[nodulation];
+    } else {
+        nFixed = 0; // Non-nitrogen-fixing crops do not fix nitrogen
+    }
 
     console.log("AGB (kg/ha):", AGB);
     console.log("RB (kg/ha):", RB);
@@ -65,12 +78,29 @@ function calculateNPK(event) {
     console.log("Total Nitrogen Returned (kg N/ha):", nReturned);
 
     // Display results with validation
-    document.getElementById('nFixed').innerText = isNaN(nFixed) ? "N/A" : nFixed.toFixed(2) + ' kg N/ha';
+    document.getElementById('nFixed').innerText = crop.isNitrogenFixing && nFixed > 0 ? nFixed.toFixed(2) + ' kg N/ha' : "N/A";
     document.getElementById('nFromResidues').innerText = isNaN(nFromResidues) ? "N/A" : nFromResidues.toFixed(2) + ' kg N/ha';
-    document.getElementById('nContribution').innerText = isNaN(nReturned) ? "N/A" : nReturned.toFixed(2) + ' kg N/ha';
+    document.getElementById('nContribution').innerText = nReturned > 0 ? nReturned.toFixed(2) + ' kg N/ha' : "N/A";
     document.getElementById('pContribution').innerText = isNaN(pReturned) ? "N/A" : pReturned.toFixed(2) + ' kg P₂O₅/ha';
     document.getElementById('kContribution').innerText = isNaN(kReturned) ? "N/A" : kReturned.toFixed(2) + ' kg K₂O/ha';
+
+    // Optional: Disable nodulation efficiency input for non-nitrogen-fixing crops
+    toggleNodulationInput(crop.isNitrogenFixing);
 }
 
-// Attach event listener to the form
+// Function to enable or disable the nodulation efficiency input
+function toggleNodulationInput(isEnabled) {
+    const nodulationInput = document.getElementById('nodulationEfficiency');
+    nodulationInput.disabled = !isEnabled;
+}
+
+ // Attach event listener to the form
 document.getElementById('npkForm').addEventListener('submit', calculateNPK);
+
+// Attach event listener to the crop type dropdown to update nodulation input
+document.getElementById('cropType').addEventListener('change', function() {
+    const selectedCrop = cropData[this.value];
+    if (selectedCrop) {
+        toggleNodulationInput(selectedCrop.isNitrogenFixing);
+    }
+});
