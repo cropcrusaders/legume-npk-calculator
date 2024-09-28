@@ -226,7 +226,60 @@ const cropData = {
         isNitrogenFixing: false,
         yieldUnit: "t/ha fresh weight"
     },
-    // Add other crops as needed
+        "Lucerne (Alfalfa)": {
+        harvestIndex: 0.85, // Since most of the biomass is harvested
+        rootShootRatio: 0.40,
+        nContent: 0.030,
+        pContent: 0.0035,
+        kContent: 0.020,
+        isNitrogenFixing: true,
+        yieldUnit: "t/ha dry matter"
+    },
+    "Ryegrass": {
+        harvestIndex: 0.85, // Most biomass is harvested
+        rootShootRatio: 0.30,
+        nContent: 0.025,
+        pContent: 0.0030,
+        kContent: 0.018,
+        isNitrogenFixing: false,
+        yieldUnit: "t/ha dry matter"
+    },
+    "Clover": {
+        harvestIndex: 0.85,
+        rootShootRatio: 0.35,
+        nContent: 0.028,
+        pContent: 0.0032,
+        kContent: 0.019,
+        isNitrogenFixing: true,
+        yieldUnit: "t/ha dry matter"
+    },
+    "Barley (Forage)": {
+        harvestIndex: 0.85,
+        rootShootRatio: 0.25,
+        nContent: 0.020,
+        pContent: 0.0025,
+        kContent: 0.015,
+        isNitrogenFixing: false,
+        yieldUnit: "t/ha dry matter"
+    },
+    // Other Forage Crops
+    "Oat Hay": {
+        harvestIndex: 0.85,
+        rootShootRatio: 0.25,
+        nContent: 0.018,
+        pContent: 0.0022,
+        kContent: 0.014,
+        isNitrogenFixing: false,
+        yieldUnit: "t/ha dry matter"
+    },
+    "Sorghum (Forage)": {
+        harvestIndex: 0.85,
+        rootShootRatio: 0.30,
+        nContent: 0.017,
+        pContent: 0.0020,
+        kContent: 0.012,
+        isNitrogenFixing: false,
+        yieldUnit: "t/ha dry matter"// Add other crops as needed
 };
 
 // Nitrogen Fixation Efficiency
