@@ -46,7 +46,22 @@ function calculateNPK(event) {
     // Total Nitrogen Contribution = Nitrogen Fixed + Nitrogen from Residues
     const nReturned = nFixed + nFromResidues;
 
+    // Debugging Statements (Optional: Remove in Production)
+    console.log("Crop Type:", cropType);
+    console.log("AGB (kg/ha):", AGB);
+    console.log("RB (kg/ha):", RB);
+    console.log("Total Biomass (kg/ha):", totalBiomass);
+    console.log("Nitrogen Uptake (kg N/ha):", nUptake);
+    console.log("Nitrogen Fixed (kg N/ha):", nFixed);
+    console.log("Residue Biomass (kg/ha):", residueBiomass);
+    console.log("Nitrogen from Residues (kg N/ha):", nFromResidues);
+    console.log("Total Nitrogen Returned (kg N/ha):", nReturned);
+    console.log("Phosphorus Returned (kg P₂O₅/ha):", pReturned);
+    console.log("Potassium Returned (kg K₂O/ha):", kReturned);
+
     // Display results with validation
+    document.getElementById('nFixed').innerText = isNaN(nFixed) ? "N/A" : nFixed.toFixed(2) + ' kg N/ha';
+    document.getElementById('nFromResidues').innerText = isNaN(nFromResidues) ? "N/A" : nFromResidues.toFixed(2) + ' kg N/ha';
     document.getElementById('nContribution').innerText = isNaN(nReturned) ? "N/A" : nReturned.toFixed(2) + ' kg N/ha';
     document.getElementById('pContribution').innerText = isNaN(pReturned) ? "N/A" : pReturned.toFixed(2) + ' kg P₂O₅/ha';
     document.getElementById('kContribution').innerText = isNaN(kReturned) ? "N/A" : kReturned.toFixed(2) + ' kg K₂O/ha';
@@ -54,4 +69,3 @@ function calculateNPK(event) {
 
 // Attach event listener to the form
 document.getElementById('npkForm').addEventListener('submit', calculateNPK);
-
