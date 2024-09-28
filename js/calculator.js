@@ -1,5 +1,7 @@
 // calculator.js
 
+// Ensure that data.js is loaded before this script
+
 function calculateNPK(event) {
     event.preventDefault(); // Prevent form submission
 
@@ -37,9 +39,12 @@ function calculateNPK(event) {
         residueBiomass = AGB + RB;
     }
 
-    const nReturned = residueBiomass * crop.nContent;
+    const nFromResidues = residueBiomass * crop.nContent;
     const pReturned = residueBiomass * crop.pContent * 2.29; // Convert P to P₂O₅
     const kReturned = residueBiomass * crop.kContent * 1.2;  // Convert K to K₂O
+
+    // Total Nitrogen Contribution = Nitrogen Fixed + Nitrogen from Residues
+    const nReturned = nFixed + nFromResidues;
 
     // Display results with validation
     document.getElementById('nContribution').innerText = isNaN(nReturned) ? "N/A" : nReturned.toFixed(2) + ' kg N/ha';
@@ -49,3 +54,4 @@ function calculateNPK(event) {
 
 // Attach event listener to the form
 document.getElementById('npkForm').addEventListener('submit', calculateNPK);
+
